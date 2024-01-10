@@ -11,37 +11,7 @@
 // limitations under the License.
 
 //outputs by network module
-output "vnet_address_space" {
-  value       = module.network.vnet_address_space
-  description = "The address space of the newly created vNet"
-}
-
-output "vnet_guid" {
-  value       = module.network.vnet_guid
-  description = "The GUID of the newly created vNet"
-}
-
-output "vnet_id" {
-  value       = module.network.vnet_id
-  description = "The id of the newly created vNet"
-}
-
-output "vnet_location" {
-  value       = module.network.vnet_location
-  description = "The location of the newly created vNet"
-}
-
-output "vnet_name" {
-  value       = module.network.vnet_name
-  description = "The name of the newly created vNet"
-}
-
-output "vnet_subnets" {
-  value       = module.network.vnet_subnets
-  description = "The ids of subnets created inside the newly created vNet"
-}
-
-output "vnet_subnets_name_id" {
-  value       = module.network.vnet_subnets_name_id
-  description = "Can be queried subnet-id by subnet name by using lookup(module.vnet.vnet_subnets_name_id, subnet1)"
+output "networks" {
+  value       = module.network
+  description = "The output of the network module"
 }
