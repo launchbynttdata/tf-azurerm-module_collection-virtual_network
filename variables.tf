@@ -16,26 +16,26 @@ variable "network_map" {
     resource_group_name = string
     location            = string
     vnet_name           = string
-    address_space       = list(string)
-    subnet_names        = list(string)
-    subnet_prefixes     = list(string)
-    bgp_community       = string
-    ddos_protection_plan = object(
+    use_for_each        = bool
+    address_space       = optional(list(string), ["10.0.0.0/16"])
+    subnet_names        = optional(list(string), ["subnet1", "subnet2", "subnet3"])
+    subnet_prefixes     = optional(list(string), ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"])
+    bgp_community       = optional(string, null)
+    ddos_protection_plan = optional(object(
       {
         enable = bool
         id     = string
       }
-    )
-    dns_servers                                           = list(string)
-    nsg_ids                                               = map(string)
-    route_tables_ids                                      = map(string)
-    subnet_delegation                                     = map(map(any))
-    subnet_enforce_private_link_endpoint_network_policies = map(bool)
-    subnet_enforce_private_link_service_network_policies  = map(bool)
-    subnet_service_endpoints                              = map(list(string))
-    tags                                                  = map(string)
-    tracing_tags_enabled                                  = bool
-    tracing_tags_prefix                                   = string
-    use_for_each                                          = bool
+    ), null)
+    dns_servers                                           = optional(list(string), [])
+    nsg_ids                                               = optional(map(string), {})
+    route_tables_ids                                      = optional(map(string), {})
+    subnet_delegation                                     = optional(map(map(any)), {})
+    subnet_enforce_private_link_endpoint_network_policies = optional(map(bool), {})
+    subnet_enforce_private_link_service_network_policies  = optional(map(bool), {})
+    subnet_service_endpoints                              = optional(map(list(string)), {})
+    tags                                                  = optional(map(string), {})
+    tracing_tags_enabled                                  = optional(bool, false)
+    tracing_tags_prefix                                   = optional(string, "")
   }))
 }
