@@ -14,7 +14,7 @@ variable "network_map" {
   type = map(object({
     resource_group_name = optional(string)
     location            = optional(string)
-    vnet_name           = string
+    vnet_name           = optional(string)
     address_space       = list(string)
     subnet_names        = list(string)
     subnet_prefixes     = list(string)
@@ -154,4 +154,9 @@ variable "logical_product_service" {
   }
 
   default = "network"
+}
+
+variable "tags" {
+  type    = map(string)
+  default = {}
 }

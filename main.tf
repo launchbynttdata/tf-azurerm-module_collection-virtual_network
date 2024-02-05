@@ -11,8 +11,7 @@
 // limitations under the License.
 
 module "network" {
-  source  = "Azure/vnet/azurerm"
-  version = "4.1.0"
+  source = "git::https://github.com/nexient-llc/tf-azurerm-module_primitive-virtual_network.git?ref=0.1.0"
 
   for_each = var.network_map
 

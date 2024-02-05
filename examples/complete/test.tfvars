@@ -1,7 +1,39 @@
+resource_names_map = {
+  hub_rg = {
+    name       = "rg"
+    max_length = 80
+    region     = "eastus"
+  }
+  spoke1_rg = {
+    name       = "rg"
+    max_length = 80
+    region     = "eastus2"
+  }
+  spoke2_rg = {
+    name       = "rg"
+    max_length = 80
+    region     = "southindia"
+  }
+  hub_vnet = {
+    name       = "vnet"
+    max_length = 80
+    region     = "eastus"
+  }
+  spoke1_vnet = {
+    name       = "vnet"
+    max_length = 80
+    region     = "eastus2"
+  }
+  spoke2_vnet = {
+    name       = "vnet"
+    max_length = 80
+    region     = "southindia"
+  }
+}
 
+# vnet_name and vnet_location will be injected inside the module
 network_map = {
   "spoke1" = {
-    vnet_name                                             = "EastUs2-Spoke1-Vnet"
     address_space                                         = ["192.0.0.0/16"]
     subnet_names                                          = ["AzureBastionSubnet"]
     subnet_prefixes                                       = ["192.0.0.0/24"]
@@ -20,10 +52,9 @@ network_map = {
     use_for_each                                          = true
   },
   "spoke2" = {
-    vnet_name                                             = "SouthIndia-Spoke2-Vnet"
     address_space                                         = ["172.0.0.0/16"]
-    subnet_names                                          = []
-    subnet_prefixes                                       = []
+    subnet_names                                          = ["subnet-1"]
+    subnet_prefixes                                       = ["172.0.10.0/24"]
     bgp_community                                         = null
     ddos_protection_plan                                  = null
     dns_servers                                           = []
@@ -39,7 +70,6 @@ network_map = {
     use_for_each                                          = true
   },
   "hub" = {
-    vnet_name                                             = "Hub-Vnet"
     address_space                                         = ["10.0.0.0/16"]
     subnet_names                                          = ["AzureFirewallSubnet"]
     subnet_prefixes                                       = ["10.0.0.0/24"]

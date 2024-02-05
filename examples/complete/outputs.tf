@@ -10,8 +10,37 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-# //outputs by network module
-output "networks" {
-  value       = module.network.networks
-  description = "The output of the network module"
+output "vnet_names" {
+  value = { for name, vnet in module.network.networks : name => vnet.vnet_name }
+}
+
+output "vnet_ids" {
+  value = { for name, vnet in module.network.networks : name => vnet.vnet_id }
+}
+
+output "vnet_subnets" {
+  value = { for name, vnet in module.network.networks : name => vnet.vnet_subnets }
+}
+
+output "vnet_locations" {
+  value = { for name, vnet in module.network.networks : name => vnet.vnet_location }
+}
+
+output "vnet_address_spaces" {
+  value = { for name, vnet in module.network.networks : name => vnet.vnet_address_space }
+}
+
+output "vnet_subnet_name_id_map" {
+  description = "Outputs a subnet name to ID map for each Vnet"
+  value       = { for name, vnet in module.network.networks : name => vnet.vnet_subnets_name_id }
+}
+
+output "rg_ids" {
+  description = "Resource Group IDs"
+  value       = { for name, rg in module.resource_groups : name => rg.id }
+}
+
+output "rg_names" {
+  description = "Resource Group Names"
+  value       = { for name, rg in module.resource_groups : name => rg.name }
 }

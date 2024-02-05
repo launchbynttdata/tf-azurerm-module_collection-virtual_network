@@ -10,45 +10,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-module "network" {
-  source = "../.."
-
-  network_map = local.network_map
-
-  depends_on = [module.resource_group_hub, module.resource_group_spoke1, module.resource_group_spoke2]
-}
-
-module "resource_group_hub" {
-  source = "git::https://github.com/nexient-llc/tf-azurerm-module-resource_group.git?ref=0.2.0"
-
-  name     = local.resource_group_hub
-  location = local.hub_location
-  tags = {
-    resource_name = local.resource_group_hub
-  }
-}
-
-module "resource_group_spoke1" {
-  source = "git::https://github.com/nexient-llc/tf-azurerm-module-resource_group.git?ref=0.2.0"
-
-  name     = local.resource_group_spoke1
-  location = local.spoke1_location
-  tags = {
-    resource_name = local.resource_group_spoke1
-  }
-}
-
-module "resource_group_spoke2" {
-  source = "git::https://github.com/nexient-llc/tf-azurerm-module-resource_group.git?ref=0.2.0"
-
-  name     = local.resource_group_spoke2
-  location = local.spoke2_location
-  tags = {
-    resource_name = local.resource_group_spoke2
-  }
-}
-
-# This module generates the resource-name of resources based on resource_type, naming_prefix, env etc.
 module "resource_names" {
   source = "git::https://github.com/nexient-llc/tf-module-resource_name.git?ref=1.0.0"
 
@@ -62,4 +23,20 @@ module "resource_names" {
   maximum_length          = each.value.max_length
   logical_product_family  = var.logical_product_family
   logical_product_service = var.logical_product_service
+}
+
+module "network" {
+  source = "../.."
+
+  network_map = local.modified_network_map
+
+  depends_on = [module.resource_groups]
+}
+
+module "resource_groups" {
+  source   = "git::https://github.com/nexient-llc/tf-azurerm-module_primitive-resource_group.git?ref=0.2.0"
+  for_each = var.network_map
+  name     = module.resource_names["${each.key}_rg"].standard
+  location = var.resource_names_map["${each.key}_rg"].region
+  tags     = merge(var.tags, { resource_name = module.resource_names["${each.key}_rg"].standard })
 }

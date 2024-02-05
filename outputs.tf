@@ -15,3 +15,28 @@ output "networks" {
   value       = module.network
   description = "The output of the network module"
 }
+
+output "vnet_names" {
+  value = { for name, vnet in module.network : name => vnet.vnet_name }
+}
+
+output "vnet_ids" {
+  value = { for name, vnet in module.network : name => vnet.vnet_id }
+}
+
+output "vnet_subnets" {
+  value = { for name, vnet in module.network : name => vnet.vnet_subnets }
+}
+
+output "vnet_locations" {
+  value = { for name, vnet in module.network : name => vnet.vnet_location }
+}
+
+output "vnet_address_spaces" {
+  value = { for name, vnet in module.network : name => vnet.vnet_address_space }
+}
+
+output "vnet_subnet_name_id_map" {
+  description = "Outputs a subnet name to ID map for each Vnet"
+  value       = { for name, vnet in module.network : name => vnet.vnet_subnets_name_id }
+}
