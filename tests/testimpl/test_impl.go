@@ -16,11 +16,11 @@ func TestComposableVnet(t *testing.T, ctx types.TestContext) {
 		t.Fatal("AZURE_SUBSCRIPTION_ID environment variable is not set")
 	}
 
-	vnetIds := terraform.OutputMap(t, ctx.TerratestTerraformOptions, "vnet_ids")
-	vnetNames := terraform.OutputMap(t, ctx.TerratestTerraformOptions, "vnet_names")
-	rgIds := terraform.OutputMap(t, ctx.TerratestTerraformOptions, "rg_ids")
-	rgNames := terraform.OutputMap(t, ctx.TerratestTerraformOptions, "rg_names")
-	subnetMap := terraform.OutputMapOfObjects(t, ctx.TerratestTerraformOptions, "vnet_subnet_name_id_map")
+	vnetIds := terraform.OutputMap(t, ctx.TerratestTerraformOptions(), "vnet_ids")
+	vnetNames := terraform.OutputMap(t, ctx.TerratestTerraformOptions(), "vnet_names")
+	rgIds := terraform.OutputMap(t, ctx.TerratestTerraformOptions(), "rg_ids")
+	rgNames := terraform.OutputMap(t, ctx.TerratestTerraformOptions(), "rg_names")
+	subnetMap := terraform.OutputMapOfObjects(t, ctx.TerratestTerraformOptions(), "vnet_subnet_name_id_map")
 
 	for name, vnetName := range vnetNames {
 		t.Run("VnetExists_"+vnetName, func(t *testing.T) {

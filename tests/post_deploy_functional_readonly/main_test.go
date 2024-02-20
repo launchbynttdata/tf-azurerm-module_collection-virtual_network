@@ -21,15 +21,22 @@ import (
 )
 
 const (
-	testConfigsExamplesFolderDefault = "../../examples/complete"
+	testConfigsExamplesFolderDefault = "../../examples"
 	infraTFVarFileNameDefault        = "test.tfvars"
 )
 
 func TestVnetModule(t *testing.T) {
 
-	ctx := types.TestContext{
-		TestConfig: &testimpl.ThisTFModuleConfig{},
-	}
-	lib.RunNonDestructiveTest(t, testConfigsExamplesFolderDefault, infraTFVarFileNameDefault, ctx,
-		testimpl.TestComposableVnet)
+	ctx := types.CreateTestContextBuilder().
+		SetTestConfig(&testimpl.ThisTFModuleConfig{}).
+		SetTestConfigFolderName(testConfigsExamplesFolderDefault).
+		SetTestConfigFileName(infraTFVarFileNameDefault).
+		SetTestSpecificFlags(map[string]types.TestFlags{
+			"complete": {
+				"IS_TERRAFORM_IDEMPOTENT_APPLY": false,
+			},
+		}).
+		Build()
+
+	lib.RunNonDestructiveTest(t, *ctx, testimpl.TestComposableVnet)
 }

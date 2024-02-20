@@ -10,37 +10,48 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+//outputs by network module
+output "networks" {
+  value       = module.network
+  description = "The output of the network module"
+}
+
 output "vnet_names" {
-  value = { for name, vnet in module.network.networks : name => vnet.vnet_name }
+  value       = module.network.vnet_names
+  description = "Map of vnet names where key in input key in network map and value is name of vnet that got created."
 }
 
 output "vnet_ids" {
-  value = { for name, vnet in module.network.networks : name => vnet.vnet_id }
+  value       = module.network.vnet_ids
+  description = "Map of vnet names where key in input key in network map and value is id of vnet that got created."
 }
 
 output "vnet_subnets" {
-  value = { for name, vnet in module.network.networks : name => vnet.vnet_subnets }
+  value       = module.network.vnet_subnets
+  description = "Map of vnet names where key in input key in network map and value is id of the subnets that got created."
 }
 
 output "vnet_locations" {
-  value = { for name, vnet in module.network.networks : name => vnet.vnet_location }
+  value       = module.network.vnet_locations
+  description = "Map of vnet names where key in input key in network map and value is location of vnet that got created."
 }
 
 output "vnet_address_spaces" {
-  value = { for name, vnet in module.network.networks : name => vnet.vnet_address_space }
+  value       = module.network.vnet_address_spaces
+  description = "Map of vnet names where key in input key in network map and value is address of vnet that got created."
 }
 
 output "vnet_subnet_name_id_map" {
   description = "Outputs a subnet name to ID map for each Vnet"
-  value       = { for name, vnet in module.network.networks : name => vnet.vnet_subnets_name_id }
+  value       = module.network.vnet_subnet_name_id_map
 }
 
 output "rg_ids" {
-  description = "Resource Group IDs"
-  value       = { for name, rg in module.resource_groups : name => rg.id }
+  description = "Map of Resource Group ids where key in input key in network map and value is id of resource group that got created."
+  value       = { for k, v in local.modified_network_map : k => module.resource_groups[k].id }
 }
 
 output "rg_names" {
-  description = "Resource Group Names"
-  value       = { for name, rg in module.resource_groups : name => rg.name }
+  description = "Map of Resource Group Names where key in input key in network map and value is name of resource group that got created."
+  value       = { for k, v in local.modified_network_map : k => module.resource_groups[k].name }
 }

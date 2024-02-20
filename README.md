@@ -109,7 +109,7 @@ If `make check` target is successful, developer is good to commit the code to pr
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | <= 1.5.5 |
-| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | >=3.77.0 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | ~> 3.77 |
 
 ## Providers
 
@@ -119,7 +119,7 @@ No providers.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_network"></a> [network](#module\_network) | git::https://github.com/nexient-llc/tf-azurerm-module_primitive-virtual_network.git | 0.1.0 |
+| <a name="module_network"></a> [network](#module\_network) | git::https://github.com/nexient-llc/tf-azurerm-module_primitive-virtual_network.git | 0.2.0 |
 
 ## Resources
 
@@ -136,10 +136,10 @@ No resources.
 | Name | Description |
 |------|-------------|
 | <a name="output_networks"></a> [networks](#output\_networks) | The output of the network module |
-| <a name="output_vnet_names"></a> [vnet\_names](#output\_vnet\_names) | n/a |
-| <a name="output_vnet_ids"></a> [vnet\_ids](#output\_vnet\_ids) | n/a |
-| <a name="output_vnet_subnets"></a> [vnet\_subnets](#output\_vnet\_subnets) | n/a |
-| <a name="output_vnet_locations"></a> [vnet\_locations](#output\_vnet\_locations) | n/a |
-| <a name="output_vnet_address_spaces"></a> [vnet\_address\_spaces](#output\_vnet\_address\_spaces) | n/a |
+| <a name="output_vnet_names"></a> [vnet\_names](#output\_vnet\_names) | Map of vnet names where key in input key in network map and value is name of vnet that got created. |
+| <a name="output_vnet_ids"></a> [vnet\_ids](#output\_vnet\_ids) | Map of vnet names where key in input key in network map and value is id of vnet that got created. |
+| <a name="output_vnet_subnets"></a> [vnet\_subnets](#output\_vnet\_subnets) | Map of vnet names where key in input key in network map and value is id of the subnets that got created. |
+| <a name="output_vnet_locations"></a> [vnet\_locations](#output\_vnet\_locations) | Map of vnet names where key in input key in network map and value is location of vnet that got created. |
+| <a name="output_vnet_address_spaces"></a> [vnet\_address\_spaces](#output\_vnet\_address\_spaces) | Map of vnet names where key in input key in network map and value is address of vnet that got created. |
 | <a name="output_vnet_subnet_name_id_map"></a> [vnet\_subnet\_name\_id\_map](#output\_vnet\_subnet\_name\_id\_map) | Outputs a subnet name to ID map for each Vnet |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

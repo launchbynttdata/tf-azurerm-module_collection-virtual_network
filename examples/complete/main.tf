@@ -11,7 +11,7 @@
 // limitations under the License.
 
 module "resource_names" {
-  source = "git::https://github.com/nexient-llc/tf-module-resource_name.git?ref=1.0.0"
+  source = "git::https://github.com/nexient-llc/tf-module-resource_name.git?ref=1.1.0"
 
   for_each = var.resource_names_map
 
@@ -36,6 +36,7 @@ module "network" {
 module "resource_groups" {
   source   = "git::https://github.com/nexient-llc/tf-azurerm-module_primitive-resource_group.git?ref=0.2.0"
   for_each = var.network_map
+
   name     = module.resource_names["${each.key}_rg"].standard
   location = var.resource_names_map["${each.key}_rg"].region
   tags     = merge(var.tags, { resource_name = module.resource_names["${each.key}_rg"].standard })

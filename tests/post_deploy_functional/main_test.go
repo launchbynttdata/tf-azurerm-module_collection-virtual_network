@@ -27,10 +27,16 @@ const (
 
 func TestVnetModule(t *testing.T) {
 
-	ctx := types.TestContext{
-		TestConfig: &testimpl.ThisTFModuleConfig{},
-	}
+	ctx := types.CreateTestContextBuilder().
+		SetTestConfig(&testimpl.ThisTFModuleConfig{}).
+		SetTestConfigFolderName(testConfigsExamplesFolderDefault).
+		SetTestConfigFileName(infraTFVarFileNameDefault).
+		SetTestSpecificFlags(map[string]types.TestFlags{
+			"complete": {
+				"IS_TERRAFORM_IDEMPOTENT_APPLY": false,
+			},
+		}).
+		Build()
 
-	lib.RunSetupTestTeardown(t, testConfigsExamplesFolderDefault, infraTFVarFileNameDefault, ctx,
-		testimpl.TestComposableVnet)
+	lib.RunSetupTestTeardown(t, *ctx, testimpl.TestComposableVnet)
 }

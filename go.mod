@@ -1,10 +1,10 @@
 module github.com/nexient-llc/tf-azurerm-module_collection-virtual_network
 
-go 1.20
+go 1.21
 
 require (
 	github.com/gruntwork-io/terratest v0.43.12
-	github.com/nexient-llc/lcaf-component-terratest-common v0.0.0-20240126002307-4fd81b54916a
+	github.com/nexient-llc/lcaf-component-terratest-common v1.0.2
 	github.com/stretchr/testify v1.8.2
 
 )
