@@ -11,9 +11,9 @@ import (
 )
 
 func TestComposableVnet(t *testing.T, ctx types.TestContext) {
-	subscriptionId := os.Getenv("AZURE_SUBSCRIPTION_ID")
+	subscriptionId := os.Getenv("ARM_SUBSCRIPTION_ID")
 	if len(subscriptionId) == 0 {
-		t.Fatal("AZURE_SUBSCRIPTION_ID environment variable is not set")
+		t.Fatal("ARM_SUBSCRIPTION_ID environment variable is not set")
 	}
 
 	vnetIds := terraform.OutputMap(t, ctx.TerratestTerraformOptions(), "vnet_ids")
