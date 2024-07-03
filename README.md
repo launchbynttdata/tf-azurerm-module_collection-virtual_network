@@ -119,7 +119,7 @@ No providers.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_network"></a> [network](#module\_network) | git::https://github.com/launchbynttdata/tf-azurerm-module_primitive-virtual_network.git | 1.0.0 |
+| <a name="module_network"></a> [network](#module\_network) | terraform.registry.launch.nttdata.com/module_primitive/virtual_network/azurerm | ~> 1.0 |
 
 ## Resources
 

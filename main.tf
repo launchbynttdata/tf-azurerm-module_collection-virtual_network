@@ -11,7 +11,8 @@
 // limitations under the License.
 
 module "network" {
-  source = "git::https://github.com/launchbynttdata/tf-azurerm-module_primitive-virtual_network.git?ref=1.0.0"
+  source  = "terraform.registry.launch.nttdata.com/module_primitive/virtual_network/azurerm"
+  version = "~> 1.0"
 
   for_each = var.network_map
 

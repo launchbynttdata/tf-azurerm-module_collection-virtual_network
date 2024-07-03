@@ -11,7 +11,8 @@
 // limitations under the License.
 
 module "resource_names" {
-  source = "git::https://github.com/launchbynttdata/tf-launch-module_library-resource_name.git?ref=1.0.0"
+  source  = "terraform.registry.launch.nttdata.com/module_library/resource_name/launch"
+  version = "~> 1.0"
 
   for_each = var.resource_names_map
 
@@ -34,7 +35,8 @@ module "network" {
 }
 
 module "resource_groups" {
-  source   = "git::https://github.com/launchbynttdata/tf-azurerm-module_primitive-resource_group.git?ref=1.0.0"
+  source   = "terraform.registry.launch.nttdata.com/module_primitive/resource_group/azurerm"
+  version  = "~> 1.0"
   for_each = var.network_map
 
   name     = module.resource_names["${each.key}_rg"].standard

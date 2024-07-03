@@ -17,9 +17,9 @@ No providers.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_resource_names"></a> [resource\_names](#module\_resource\_names) | git::https://github.com/launchbynttdata/tf-launch-module_library-resource_name.git | 1.0.0 |
+| <a name="module_resource_names"></a> [resource\_names](#module\_resource\_names) | terraform.registry.launch.nttdata.com/module_library/resource_name/launch | ~> 1.0 |
 | <a name="module_network"></a> [network](#module\_network) | ../.. | n/a |
-| <a name="module_resource_groups"></a> [resource\_groups](#module\_resource\_groups) | git::https://github.com/launchbynttdata/tf-azurerm-module_primitive-resource_group.git | 1.0.0 |
+| <a name="module_resource_groups"></a> [resource\_groups](#module\_resource\_groups) | terraform.registry.launch.nttdata.com/module_primitive/resource_group/azurerm | ~> 1.0 |
 
 ## Resources
 
