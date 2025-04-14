@@ -12,27 +12,17 @@
 
 module "network" {
   source  = "terraform.registry.launch.nttdata.com/module_primitive/virtual_network/azurerm"
-  version = "~> 1.0"
+  version = "~> 3.0"
 
   for_each = var.network_map
 
-  resource_group_name                                   = each.value.resource_group_name
-  vnet_location                                         = each.value.location
-  vnet_name                                             = each.value.vnet_name
-  address_space                                         = each.value.address_space
-  subnet_names                                          = each.value.subnet_names
-  subnet_prefixes                                       = each.value.subnet_prefixes
-  bgp_community                                         = each.value.bgp_community
-  ddos_protection_plan                                  = each.value.ddos_protection_plan
-  dns_servers                                           = each.value.dns_servers
-  nsg_ids                                               = each.value.nsg_ids
-  route_tables_ids                                      = each.value.route_tables_ids
-  subnet_delegation                                     = each.value.subnet_delegation
-  subnet_enforce_private_link_endpoint_network_policies = each.value.subnet_enforce_private_link_endpoint_network_policies
-  subnet_enforce_private_link_service_network_policies  = each.value.subnet_enforce_private_link_service_network_policies
-  subnet_service_endpoints                              = each.value.subnet_service_endpoints
-  tags                                                  = each.value.tags
-  tracing_tags_enabled                                  = each.value.tracing_tags_enabled
-  tracing_tags_prefix                                   = each.value.tracing_tags_prefix
-  use_for_each                                          = each.value.use_for_each
+  resource_group_name  = each.value.resource_group_name
+  vnet_location        = each.value.location
+  vnet_name            = each.value.vnet_name
+  address_space        = each.value.address_space
+  subnets              = each.value.subnets
+  bgp_community        = each.value.bgp_community
+  ddos_protection_plan = each.value.ddos_protection_plan
+  dns_servers          = each.value.dns_servers
+  tags                 = each.value.tags
 }
