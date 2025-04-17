@@ -27,7 +27,7 @@ output "vnet_ids" {
 }
 
 output "vnet_subnets" {
-  value       = { for k, v in var.network_map : k => module.network[k].vnet_subnets }
+  value       = { for k, v in var.network_map : k => module.network[k].subnet_map }
   description = "Map of vnet names where key in input key in network map and value is id of the subnets that got created."
 }
 
@@ -43,5 +43,5 @@ output "vnet_address_spaces" {
 
 output "vnet_subnet_name_id_map" {
   description = "Outputs a subnet name to ID map for each Vnet"
-  value       = { for k, v in var.network_map : k => module.network[k].vnet_subnets_name_id }
+  value       = { for k, v in var.network_map : k => module.network[k].subnet_name_id_map }
 }
