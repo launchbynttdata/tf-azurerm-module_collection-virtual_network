@@ -142,4 +142,5 @@ No resources.
 | <a name="output_vnet_locations"></a> [vnet\_locations](#output\_vnet\_locations) | Map of vnet names where key in input key in network map and value is location of vnet that got created. |
 | <a name="output_vnet_address_spaces"></a> [vnet\_address\_spaces](#output\_vnet\_address\_spaces) | Map of vnet names where key in input key in network map and value is address of vnet that got created. |
 | <a name="output_vnet_subnet_name_id_map"></a> [vnet\_subnet\_name\_id\_map](#output\_vnet\_subnet\_name\_id\_map) | Outputs a subnet name to ID map for each Vnet |
+| <a name="output_vnet_subnet_name_id_map_flattened"></a> [vnet\_subnet\_name\_id\_map\_flattened](#output\_vnet\_subnet\_name\_id\_map\_flattened) | Flattened map of subnet names to ids for iterating in dependent modules. |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

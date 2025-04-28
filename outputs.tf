@@ -45,3 +45,17 @@ output "vnet_subnet_name_id_map" {
   description = "Outputs a subnet name to ID map for each Vnet"
   value       = { for k, v in var.network_map : k => module.network[k].subnet_name_id_map }
 }
+
+output "vnet_subnet_name_id_map_flattened" {
+  description = "Flattened map of subnet names to ids for iterating in dependent modules."
+  value = {
+    for item in flatten([
+      for k, v in var.network_map : [
+        for subnet_name, subnet_id in module.network[k].subnet_name_id_map : {
+          key   = subnet_name
+          value = subnet_id
+        }
+      ]
+    ]) : item.key => item.value
+  }
+}
